@@ -10,11 +10,12 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
+using std::cout;
+using std::endl;
 
 int main(int argc, char **argv){
-    using std::cout;    using std::endl;
-    glfwInit();
+    
+    glfwInit();//初始化GLFW
 //    主版本
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 //    次版本
@@ -24,10 +25,10 @@ int main(int argc, char **argv){
 //    向前兼容
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 //    创建一个GLFW 窗口   宽 高  窗口名字  后边两个暂时不用管
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGLDemo", NULL, NULL);
     if (window == NULL)
     {
-        std::cout << "Failed to create GLFW window" << std::endl;
+        cout << "Failed to create GLFW window" << endl;
         glfwTerminate();
         return -1;
     }
@@ -46,6 +47,7 @@ int main(int argc, char **argv){
 //    openGL 幕后使用的是glViewport 定义的 位置和宽高进行2D转换
     glViewport(0, 0, 800, 600);
 //    窗口调整的时候 视口应该也被调整  对窗口注册一个回调函数每次窗口大小被调整的时候会被调用
+    //当窗口被第一次显示的时候framebuffer_size_callback也会被调
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     
 
@@ -61,17 +63,19 @@ int main(int argc, char **argv){
     {
         //输出控制
         processInput(window);
-//        glfwSwapBuffers 会交换颜色缓冲（他是存储着GLFW 窗口每一个像素色值的大缓冲），将会作为输出显示在屏幕上
+
 //        当程序退出的时候 使用一个自定义的颜色清空屏幕  在每个新的渲染迭代可是的时候我们总希望清屏否则总是看到上次渲染的结果。
 //        我们可以使用glClear   GL_COLOR_BUFFER_BIT，GL_DEPTH_BUFFER_BIT和GL_STENCIL_BUFFER_BIT。 我们清空颜色 。
         glClearColor(0.5f, 0.1f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        //        glfwSwapBuffers 会交换颜色缓冲（他是存储着GLFW 窗口每一个像素色值的大缓冲），将会作为输出显示在屏幕上
         glfwSwapBuffers(window);
 //        glfwPollEvents 检查函数有没有触发什么事件 键盘输入 鼠标移动 并调用对应函数
         glfwPollEvents();
     }
 
-    
+    //当渲染循环结束后我们需要正确释放/删除之前的分配的所有资源。
     glfwTerminate();
 
     return 0;
@@ -80,11 +84,11 @@ int main(int argc, char **argv){
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+    cout << "window size change:" << width << "," << height << endl;
     glViewport(0, 0, width, height);
 }
 void processInput(GLFWwindow *window)
 {
-//
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
