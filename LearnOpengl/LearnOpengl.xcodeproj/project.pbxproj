@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		65AE9A40262C7EEF00D265AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A3F262C7EEF00D265AD /* Assets.xcassets */; };
 		65AE9A43262C7EEF00D265AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A41262C7EEF00D265AD /* Main.storyboard */; };
-		65AE9A51262C7EEF00D265AD /* LearnOpenglTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE9A50262C7EEF00D265AD /* LearnOpenglTests.m */; };
-		65AE9A5C262C7EEF00D265AD /* LearnOpenglUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE9A5B262C7EEF00D265AD /* LearnOpenglUITests.m */; };
 		65AE9A6D262C7F3B00D265AD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A6C262C7F3B00D265AD /* OpenGL.framework */; };
 		65AE9A71262C804A00D265AD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65AE9A70262C804A00D265AD /* main.cpp */; };
 		65AE9A73262C86DE00D265AD /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */; };
@@ -42,18 +40,12 @@
 		65AE9A44262C7EEF00D265AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65AE9A47262C7EEF00D265AD /* LearnOpengl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnOpengl.entitlements; sourceTree = "<group>"; };
 		65AE9A4C262C7EEF00D265AD /* LearnOpenglTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnOpenglTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65AE9A50262C7EEF00D265AD /* LearnOpenglTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LearnOpenglTests.m; sourceTree = "<group>"; };
-		65AE9A52262C7EEF00D265AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65AE9A57262C7EEF00D265AD /* LearnOpenglUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnOpenglUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65AE9A5B262C7EEF00D265AD /* LearnOpenglUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LearnOpenglUITests.m; sourceTree = "<group>"; };
-		65AE9A5D262C7EEF00D265AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65AE9A6A262C7F3000D265AD /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		65AE9A6C262C7F3B00D265AD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		65AE9A6E262C7FAA00D265AD /* libGLTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLTools.a; sourceTree = "<group>"; };
 		65AE9A70262C804A00D265AD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		65AE9A74262C86F800D265AD /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3.2/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
-		65AE9A78262C875000D265AD /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../Downloads/glad/src; sourceTree = "<group>"; };
 		65AE9A7A262C87CF00D265AD /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,8 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				65AE9A38262C7EE400D265AD /* LearnOpengl */,
-				65AE9A4F262C7EEF00D265AD /* LearnOpenglTests */,
-				65AE9A5A262C7EEF00D265AD /* LearnOpenglUITests */,
 				65AE9A37262C7EE400D265AD /* Products */,
 				65AE9A69262C7F2F00D265AD /* Frameworks */,
 			);
@@ -119,33 +109,13 @@
 			path = LearnOpengl;
 			sourceTree = "<group>";
 		};
-		65AE9A4F262C7EEF00D265AD /* LearnOpenglTests */ = {
-			isa = PBXGroup;
-			children = (
-				65AE9A50262C7EEF00D265AD /* LearnOpenglTests.m */,
-				65AE9A52262C7EEF00D265AD /* Info.plist */,
-			);
-			path = LearnOpenglTests;
-			sourceTree = "<group>";
-		};
-		65AE9A5A262C7EEF00D265AD /* LearnOpenglUITests */ = {
-			isa = PBXGroup;
-			children = (
-				65AE9A5B262C7EEF00D265AD /* LearnOpenglUITests.m */,
-				65AE9A5D262C7EEF00D265AD /* Info.plist */,
-			);
-			path = LearnOpenglUITests;
-			sourceTree = "<group>";
-		};
 		65AE9A69262C7F2F00D265AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65AE9A78262C875000D265AD /* src */,
 				65AE9A74262C86F800D265AD /* libglfw.3.3.dylib */,
 				65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */,
 				65AE9A6E262C7FAA00D265AD /* libGLTools.a */,
 				65AE9A6C262C7F3B00D265AD /* OpenGL.framework */,
-				65AE9A6A262C7F3000D265AD /* GLUT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AE9A51262C7EEF00D265AD /* LearnOpenglTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AE9A5C262C7EEF00D265AD /* LearnOpenglUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
