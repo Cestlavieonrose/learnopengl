@@ -14,6 +14,8 @@
 		65AE9A73262C86DE00D265AD /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */; };
 		65AE9A75262C86F800D265AD /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A74262C86F800D265AD /* libglfw.3.3.dylib */; };
 		65AE9A7B262C87CF00D265AD /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 65AE9A7A262C87CF00D265AD /* glad.c */; };
+		65C3226A2634248C009F6B62 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 65C3226626341D10009F6B62 /* Shader.hpp */; };
+		65C3226E26343070009F6B62 /* ShaderCode in Resources */ = {isa = PBXBuildFile; fileRef = 65C3226D26343070009F6B62 /* ShaderCode */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +49,8 @@
 		65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../usr/local/Cellar/glew/2.1.0_1/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		65AE9A74262C86F800D265AD /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3.2/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		65AE9A7A262C87CF00D265AD /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
-		65AE9A7F262DD2D300D265AD /* Vertex.v */ = {isa = PBXFileReference; lastKnownFileType = text; path = Vertex.v; sourceTree = "<group>"; };
+		65C3226626341D10009F6B62 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		65C3226D26343070009F6B62 /* ShaderCode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShaderCode; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +103,8 @@
 		65AE9A38262C7EE400D265AD /* LearnOpengl */ = {
 			isa = PBXGroup;
 			children = (
-				65AE9A7C262DD22000D265AD /* Shaders */,
+				65C3226D26343070009F6B62 /* ShaderCode */,
+				65C3226326341CDE009F6B62 /* Utils */,
 				65AE9A3F262C7EEF00D265AD /* Assets.xcassets */,
 				65AE9A41262C7EEF00D265AD /* Main.storyboard */,
 				65AE9A44262C7EEF00D265AD /* Info.plist */,
@@ -122,28 +126,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		65AE9A7C262DD22000D265AD /* Shaders */ = {
+		65C3226326341CDE009F6B62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				65AE9A7D262DD23E00D265AD /* Chapter3 */,
+				65C3226426341CE9009F6B62 /* Shader */,
 			);
-			path = Shaders;
+			path = Utils;
 			sourceTree = "<group>";
 		};
-		65AE9A7D262DD23E00D265AD /* Chapter3 */ = {
+		65C3226426341CE9009F6B62 /* Shader */ = {
 			isa = PBXGroup;
 			children = (
-				65AE9A7E262DD25100D265AD /* 4 */,
+				65C3226626341D10009F6B62 /* Shader.hpp */,
 			);
-			path = Chapter3;
-			sourceTree = "<group>";
-		};
-		65AE9A7E262DD25100D265AD /* 4 */ = {
-			isa = PBXGroup;
-			children = (
-				65AE9A7F262DD2D300D265AD /* Vertex.v */,
-			);
-			path = 4;
+			path = Shader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +247,7 @@
 			files = (
 				65AE9A40262C7EEF00D265AD /* Assets.xcassets in Resources */,
 				65AE9A43262C7EEF00D265AD /* Main.storyboard in Resources */,
+				65C3226E26343070009F6B62 /* ShaderCode in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C3226A2634248C009F6B62 /* Shader.hpp in Sources */,
 				65AE9A71262C804A00D265AD /* main.cpp in Sources */,
 				65AE9A7B262C87CF00D265AD /* glad.c in Sources */,
 			);
@@ -376,6 +374,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -434,6 +433,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
