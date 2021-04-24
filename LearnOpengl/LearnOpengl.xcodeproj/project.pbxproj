@@ -16,6 +16,8 @@
 		65AE9A7B262C87CF00D265AD /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 65AE9A7A262C87CF00D265AD /* glad.c */; };
 		65C3226A2634248C009F6B62 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 65C3226626341D10009F6B62 /* Shader.hpp */; };
 		65C3226E26343070009F6B62 /* ShaderCode in Resources */ = {isa = PBXBuildFile; fileRef = 65C3226D26343070009F6B62 /* ShaderCode */; };
+		65C32272263467B3009F6B62 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65C32270263467B3009F6B62 /* stb_image.cpp */; };
+		65C3227426346B09009F6B62 /* Res in Resources */ = {isa = PBXBuildFile; fileRef = 65C3227326346B09009F6B62 /* Res */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		65AE9A7A262C87CF00D265AD /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		65C3226626341D10009F6B62 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		65C3226D26343070009F6B62 /* ShaderCode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShaderCode; sourceTree = "<group>"; };
+		65C32270263467B3009F6B62 /* stb_image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
+		65C32271263467B3009F6B62 /* stb_image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stb_image.hpp; sourceTree = "<group>"; };
+		65C3227326346B09009F6B62 /* Res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Res; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,7 @@
 		65AE9A38262C7EE400D265AD /* LearnOpengl */ = {
 			isa = PBXGroup;
 			children = (
+				65C3227326346B09009F6B62 /* Res */,
 				65C3226D26343070009F6B62 /* ShaderCode */,
 				65C3226326341CDE009F6B62 /* Utils */,
 				65AE9A3F262C7EEF00D265AD /* Assets.xcassets */,
@@ -129,6 +135,7 @@
 		65C3226326341CDE009F6B62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				65C3226F2634679D009F6B62 /* Image */,
 				65C3226426341CE9009F6B62 /* Shader */,
 			);
 			path = Utils;
@@ -140,6 +147,15 @@
 				65C3226626341D10009F6B62 /* Shader.hpp */,
 			);
 			path = Shader;
+			sourceTree = "<group>";
+		};
+		65C3226F2634679D009F6B62 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				65C32270263467B3009F6B62 /* stb_image.cpp */,
+				65C32271263467B3009F6B62 /* stb_image.hpp */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65AE9A40262C7EEF00D265AD /* Assets.xcassets in Resources */,
+				65C3227426346B09009F6B62 /* Res in Resources */,
 				65AE9A43262C7EEF00D265AD /* Main.storyboard in Resources */,
 				65C3226E26343070009F6B62 /* ShaderCode in Resources */,
 			);
@@ -273,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C3226A2634248C009F6B62 /* Shader.hpp in Sources */,
+				65C32272263467B3009F6B62 /* stb_image.cpp in Sources */,
 				65AE9A71262C804A00D265AD /* main.cpp in Sources */,
 				65AE9A7B262C87CF00D265AD /* glad.c in Sources */,
 			);
