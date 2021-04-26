@@ -3,8 +3,12 @@
 
 #include <iostream>
 #include <cmath>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "Utils/Shader/Shader.hpp"
 #include "Utils/Image/stb_image.hpp"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -48,7 +52,7 @@ int main()
     }
     
     ///Users/tuxunnan/learnopengl/LearnOpengl/LearnOpengl/Shaders/Chapter3/5_shader/Vertex.vs
-    Shader ourShader("ShaderCode/Chapter3/6_texture/Vertex2.vs", "ShaderCode/Chapter3/6_texture/Frag2.fs");
+    Shader ourShader("ShaderCode/Chapter3/7_transform/Vertex.vs", "ShaderCode/Chapter3/7_transform/Frag.fs");
     
     
     
@@ -165,6 +169,11 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture2);
         
         glBindVertexArray(VAO);
+        
+        glm::mat4 trans = glm::mat4(1.0f);
+        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+        trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        ourShader.setMat4("transform", trans);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time
  
