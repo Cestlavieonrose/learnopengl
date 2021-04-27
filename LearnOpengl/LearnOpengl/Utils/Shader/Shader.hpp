@@ -60,9 +60,9 @@ public:
             std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
         }
         const char* vShaderCode = vertexCode.c_str();
-        std::cout << "####vertex code" << vShaderCode << std::endl;
+       // std::cout << "####vertex code" << vShaderCode << std::endl;
         const char * fShaderCode = fragmentCode.c_str();
-        std::cout << "####frag code" << vShaderCode << std::endl;
+       // std::cout << "####frag code" << vShaderCode << std::endl;
 
         // 2. compile shaders
         unsigned int vertex, fragment;
