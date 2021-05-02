@@ -185,11 +185,22 @@ int main()
         cubeShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         cubeShader.setFloat("material.shininess", 32.0f);
         
-        cubeShader.setVec3("light.ambient",  0.2f, 0.2f, 0.2f);
-        cubeShader.setVec3("light.diffuse",  0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
+       // cubeShader.setVec3("light.ambient",  0.2f, 0.2f, 0.2f);
+       // cubeShader.setVec3("light.diffuse",  0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
         cubeShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
         cubeShader.setVec3("light.position", lightPos);
+        
+        glm::vec3 lightColor;
+        lightColor.x = sin(glfwGetTime() * 2.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+
+        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); // 降低影响
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // 很低的影响
+
+        cubeShader.setVec3("light.ambient", ambientColor);
+        cubeShader.setVec3("light.diffuse", diffuseColor);
 
         
         
