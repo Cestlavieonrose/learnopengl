@@ -75,9 +75,9 @@ int main()
 
     
     ///Users/tuxunnan/learnopengl/LearnOpengl/LearnOpengl/Shaders/Chapter3/5_shader/Vertex.vs
-    Shader cubeShader("ShaderCode/Chapter4/2_baselight/Color.vs", "ShaderCode/Chapter4/2_baselight/Color.fs");
+    Shader cubeShader("ShaderCode/Chapter4/3_material/Color.vs", "ShaderCode/Chapter4/3_material/Color.fs");
     
-    Shader lightCubeShader("ShaderCode/Chapter4/2_baselight/LightCube.vs", "ShaderCode/Chapter4/2_baselight/LightCube.fs");
+    Shader lightCubeShader("ShaderCode/Chapter4/3_material/LightCube.vs", "ShaderCode/Chapter4/3_material/LightCube.fs");
     
     
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -180,6 +180,11 @@ int main()
         cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
         cubeShader.setVec3("lightPos", lightPos);
         cubeShader.setVec3("viewPos", camera.Position);
+        
+        cubeShader.setVec3("material.ambient",  1.0f, 0.5f, 0.31f);
+        cubeShader.setVec3("material.diffuse",  1.0f, 0.5f, 0.31f);
+        cubeShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        cubeShader.setFloat("material.shininess", 32.0f);
 
         
         
