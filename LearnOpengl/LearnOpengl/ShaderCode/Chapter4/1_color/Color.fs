@@ -3,22 +3,8 @@ out vec4 FragColor;
 
 uniform vec3 objectColor;
 uniform vec3 lightColor;
-uniform vec3 lightPos;
-
-in vec3 FragPos;
-in vec3 Normal;
-
 
 void main()
 {
-    //环境光
-    float ambientStrength = 0.1;
-    vec3 ambient = ambientStrength * lightColor;
-    //漫反射
-    vec3 lightDir = normalize(lightPos-FragPos);
-    float diff = max(dot(Normal, lightDir), 0);
-    vec3 diffColor = lightColor * diff;
-
-    vec3 result = ambient * objectColor + diffColor*objectColor;
-    FragColor = vec4(result, 1.0);
+    FragColor = vec4(lightColor * objectColor, 1.0);
 }
