@@ -16,7 +16,8 @@ void main()
     vec3 ambient = ambientStrength * lightColor;
     //漫反射
     vec3 lightDir = normalize(lightPos-FragPos);
-    float diff = max(dot(Normal, lightDir), 0);
+    vec3 norm = normalize(Normal);
+    float diff = max(dot(norm, lightDir), 0);
     vec3 diffColor = lightColor * diff;
 
     vec3 result = ambient * objectColor + diffColor*objectColor;
