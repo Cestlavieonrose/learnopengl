@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		658B1283263E7B8F0005B347 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		65AE9A36262C7EE400D265AD /* LearnOpengl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnOpengl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AE9A3F262C7EEF00D265AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65AE9A42262C7EEF00D265AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		658B1281263E7B740005B347 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				658B1283263E7B8F0005B347 /* Camera.hpp */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		65AE9A2D262C7EE400D265AD = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +144,7 @@
 		65C3226326341CDE009F6B62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				658B1281263E7B740005B347 /* Camera */,
 				65C3226F2634679D009F6B62 /* Image */,
 				65C3226426341CE9009F6B62 /* Shader */,
 			);
