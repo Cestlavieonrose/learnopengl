@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6584BFF826404C1E00F2A443 /* Camera.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 658B1283263E7B8F0005B347 /* Camera.hpp */; };
+		6584BFF926404C2200F2A443 /* Mesh.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 6584BFF526404B2000F2A443 /* Mesh.hpp */; };
 		65AE9A40262C7EEF00D265AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A3F262C7EEF00D265AD /* Assets.xcassets */; };
 		65AE9A43262C7EEF00D265AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A41262C7EEF00D265AD /* Main.storyboard */; };
 		65AE9A6D262C7F3B00D265AD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A6C262C7F3B00D265AD /* OpenGL.framework */; };
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6584BFF526404B2000F2A443 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		658B1283263E7B8F0005B347 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		65AE9A36262C7EE400D265AD /* LearnOpengl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnOpengl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AE9A3F262C7EEF00D265AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6584BFF726404BE200F2A443 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				6584BFF526404B2000F2A443 /* Mesh.hpp */,
+			);
+			path = Mesh;
+			sourceTree = "<group>";
+		};
 		658B1281263E7B740005B347 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +155,7 @@
 		65C3226326341CDE009F6B62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6584BFF726404BE200F2A443 /* Mesh */,
 				658B1281263E7B740005B347 /* Camera */,
 				65C3226F2634679D009F6B62 /* Image */,
 				65C3226426341CE9009F6B62 /* Shader */,
@@ -303,6 +315,8 @@
 				65C32272263467B3009F6B62 /* stb_image.cpp in Sources */,
 				65AE9A71262C804A00D265AD /* main.cpp in Sources */,
 				65AE9A7B262C87CF00D265AD /* glad.c in Sources */,
+				6584BFF926404C2200F2A443 /* Mesh.hpp in Sources */,
+				6584BFF826404C1E00F2A443 /* Camera.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
