@@ -208,7 +208,11 @@ int main()
         cubeShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         cubeShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         cubeShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-        cubeShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+        //cubeShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+        cubeShader.setVec3("light.position", lightPos);
+        cubeShader.setFloat("light.constant",  1.0f);
+        cubeShader.setFloat("light.linear",    0.09f);
+        cubeShader.setFloat("light.quadratic", 0.032f);
 
         // material properties
         cubeShader.setFloat("material.shininess", 32.0f);
@@ -240,6 +244,18 @@ int main()
             cubeShader.setMat4("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+        
+        // also draw the lamp object
+        lightCubeShader.use();
+        lightCubeShader.setMat4("projection", projection);
+        lightCubeShader.setMat4("view", view);
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+        lightCubeShader.setMat4("model", model);
+
+        glBindVertexArray(lightCubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
  
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
