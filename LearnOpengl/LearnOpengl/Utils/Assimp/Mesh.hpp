@@ -28,7 +28,7 @@ struct Vertex {
 struct Texture {
     unsigned int id;
     string type;
-    string path;
+    string path;// 我们储存纹理的路径用于与其它纹理进行比较
 };
 
 class Mesh {

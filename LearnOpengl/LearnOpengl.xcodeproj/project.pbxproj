@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6584BFF826404C1E00F2A443 /* Camera.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 658B1283263E7B8F0005B347 /* Camera.hpp */; };
 		6584BFF926404C2200F2A443 /* Mesh.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 6584BFF526404B2000F2A443 /* Mesh.hpp */; };
+		6584BFFE2640686D00F2A443 /* libassimp.5.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6584BFFD2640686D00F2A443 /* libassimp.5.0.0.dylib */; };
 		65AE9A40262C7EEF00D265AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A3F262C7EEF00D265AD /* Assets.xcassets */; };
 		65AE9A43262C7EEF00D265AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AE9A41262C7EEF00D265AD /* Main.storyboard */; };
 		65AE9A6D262C7F3B00D265AD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE9A6C262C7F3B00D265AD /* OpenGL.framework */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		6584BFF526404B2000F2A443 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		6584BFFB264053BC00F2A443 /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
+		6584BFFD2640686D00F2A443 /* libassimp.5.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.0.0.dylib; path = ../../../../usr/local/Cellar/assimp/5.0.1/lib/libassimp.5.0.0.dylib; sourceTree = "<group>"; };
 		658B1283263E7B8F0005B347 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		65AE9A36262C7EE400D265AD /* LearnOpengl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnOpengl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AE9A3F262C7EEF00D265AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6584BFFE2640686D00F2A443 /* libassimp.5.0.0.dylib in Frameworks */,
 				65AE9A6D262C7F3B00D265AD /* OpenGL.framework in Frameworks */,
 				65AE9A73262C86DE00D265AD /* libGLEW.2.1.0.dylib in Frameworks */,
 				65AE9A75262C86F800D265AD /* libglfw.3.3.dylib in Frameworks */,
@@ -90,12 +94,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6584BFF726404BE200F2A443 /* Mesh */ = {
+		6584BFF726404BE200F2A443 /* Assimp */ = {
 			isa = PBXGroup;
 			children = (
 				6584BFF526404B2000F2A443 /* Mesh.hpp */,
+				6584BFFB264053BC00F2A443 /* Model.hpp */,
 			);
-			path = Mesh;
+			path = Assimp;
 			sourceTree = "<group>";
 		};
 		658B1281263E7B740005B347 /* Camera */ = {
@@ -144,6 +149,7 @@
 		65AE9A69262C7F2F00D265AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6584BFFD2640686D00F2A443 /* libassimp.5.0.0.dylib */,
 				65AE9A74262C86F800D265AD /* libglfw.3.3.dylib */,
 				65AE9A72262C86DE00D265AD /* libGLEW.2.1.0.dylib */,
 				65AE9A6E262C7FAA00D265AD /* libGLTools.a */,
@@ -155,7 +161,7 @@
 		65C3226326341CDE009F6B62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				6584BFF726404BE200F2A443 /* Mesh */,
+				6584BFF726404BE200F2A443 /* Assimp */,
 				658B1281263E7B740005B347 /* Camera */,
 				65C3226F2634679D009F6B62 /* Image */,
 				65C3226426341CE9009F6B62 /* Shader */,
@@ -501,6 +507,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/assimp/5.0.1/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.colortommrowchinese.shizitest.LearnOpengl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -523,6 +530,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/assimp/5.0.1/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.colortommrowchinese.shizitest.LearnOpengl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
