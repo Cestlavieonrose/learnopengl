@@ -77,9 +77,9 @@ int main()
 
     
     ///Users/tuxunnan/learnopengl/LearnOpengl/LearnOpengl/Shaders/Chapter3/5_shader/Vertex.vs
-    Shader cubeShader("ShaderCode/Chapter4/4_lightmap/Color.vs", "ShaderCode/Chapter4/4_lightmap/Color.fs");
+    Shader cubeShader("ShaderCode/Chapter4/5_lightcaster/Color.vs", "ShaderCode/Chapter4/5_lightcaster/Color.fs");
     
-    Shader lightCubeShader("ShaderCode/Chapter4/4_lightmap/LightCube.vs", "ShaderCode/Chapter4/4_lightmap/LightCube.fs");
+    Shader lightCubeShader("ShaderCode/Chapter4/5_lightcaster/LightCube.vs", "ShaderCode/Chapter4/5_lightcaster/LightCube.fs");
     
     
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -130,7 +130,19 @@ int main()
        };
  
 
-  
+  // positions all containers
+     glm::vec3 cubePositions[] = {
+         glm::vec3( 0.0f,  0.0f,  0.0f),
+         glm::vec3( 2.0f,  5.0f, -15.0f),
+         glm::vec3(-1.5f, -2.2f, -2.5f),
+         glm::vec3(-3.8f, -2.0f, -12.3f),
+         glm::vec3( 2.4f, -0.4f, -3.5f),
+         glm::vec3(-1.7f,  3.0f, -7.5f),
+         glm::vec3( 1.3f, -2.0f, -2.5f),
+         glm::vec3( 1.5f,  2.0f, -2.5f),
+         glm::vec3( 1.5f,  0.2f, -1.5f),
+         glm::vec3(-1.3f,  1.0f, -1.5f)
+     };
 
    
     unsigned int VBO, cubeVAO;
@@ -165,8 +177,6 @@ int main()
     
     unsigned int diffuseMap = loadTexture("Res/image/container2.png");
     unsigned int specularMap = loadTexture("Res/image/container2_specular.png");
-
-
     cubeShader.use();
     cubeShader.setInt("material.diffuse", 0);
     cubeShader.setInt("material.specular", 1);
@@ -192,36 +202,26 @@ int main()
         glEnable(GL_DEPTH_TEST);
         
         cubeShader.use();
-        cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
         cubeShader.setVec3("viewPos", camera.Position);
-        
-        cubeShader.setVec3("material.ambient",  1.0f, 0.5f, 0.31f);
-        //cubeShader.setVec3("material.diffuse",  1.0f, 0.5f, 0.31f);
-        cubeShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+
+        // light properties
+        cubeShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+        cubeShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+        cubeShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+        cubeShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+
+        // material properties
         cubeShader.setFloat("material.shininess", 32.0f);
         
-        cubeShader.setVec3("light.ambient",  0.2f, 0.2f, 0.2f);
-        cubeShader.setVec3("light.diffuse",  0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
-        cubeShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-
-        cubeShader.setVec3("light.position", lightPos);
-        
       
-
-        
-        
-        
         glm::mat4 view          = camera.GetViewMatrix();
         glm::mat4 projection    = glm::mat4(1.0f);
-        
         projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
         
         cubeShader.setMat4("view", view);
         cubeShader.setMat4("projection", projection);
-        glm::mat4 model = glm::mat4(1.0f);
-        cubeShader.setMat4("model", model);
+        
         
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
@@ -230,18 +230,16 @@ int main()
         
         
         glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-       
-        lightCubeShader.use();
-        lightCubeShader.setMat4("projection", projection);
-        lightCubeShader.setMat4("view", view);
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos);
-        model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
-        lightCubeShader.setMat4("model", model);
-
-        glBindVertexArray(lightCubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        
+        for(unsigned int i = 0; i < 10; i++)
+        {
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            cubeShader.setMat4("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
  
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
