@@ -208,13 +208,15 @@ int main()
         cubeShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         cubeShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         cubeShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-       // cubeShader.setFloat("light.constant",  1.0f);
-       // cubeShader.setFloat("light.linear",    0.09f);
-       // cubeShader.setFloat("light.quadratic", 0.032f);
+        cubeShader.setFloat("light.constant",  1.0f);
+        cubeShader.setFloat("light.linear",    0.09f);
+        cubeShader.setFloat("light.quadratic", 0.032f);
         
         cubeShader.setVec3("light.position",  camera.Position);
         cubeShader.setVec3("light.direction", camera.Front);
         cubeShader.setFloat("light.cutOff",   glm::cos(glm::radians(12.5f)));
+        cubeShader.setFloat("light.outerCutOff",   glm::cos(glm::radians(17.5f)));
+        
 
         // material properties
         cubeShader.setFloat("material.shininess", 32.0f);
