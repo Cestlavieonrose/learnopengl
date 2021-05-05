@@ -75,17 +75,14 @@ int main()
         return -1;
     }
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
     
-    ///Users/tuxunnan/learnopengl/LearnOpengl/LearnOpengl/Shaders/Chapter3/5_shader/Vertex.vs
-    Shader shader("ShaderCode/Chapter6/3_blend/vert.vs", "ShaderCode/Chapter6/3_blend/alphatestfrag.fs");
-    
-    Shader shaderSingleColor("ShaderCode/Chapter6/3_blend/vert.vs", "ShaderCode/Chapter6/3_blend/outlinefrag.fs");
+    Shader shader("ShaderCode/Chapter6/3_blend/vert.vs", "ShaderCode/Chapter6/3_blend/blendfrag.fs");
     
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glEnable(GL_STENCIL_TEST);
     //glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
     //glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -146,7 +143,7 @@ int main()
     };
     
 
-    float transparentVertices[] = {
+   float transparentVertices[] = {
         // positions         // texture Coords (swapped y coordinates because texture is flipped upside down)
         0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
         0.0f, -0.5f,  0.0f,  0.0f,  1.0f,
@@ -157,12 +154,6 @@ int main()
         1.0f,  0.5f,  0.0f,  1.0f,  0.0f
     };
     
-    vector<glm::vec3> vegetation;
-    vegetation.push_back(glm::vec3(-1.5f,  0.0f, -0.48f));
-    vegetation.push_back(glm::vec3( 1.5f,  0.0f,  0.51f));
-    vegetation.push_back(glm::vec3( 0.0f,  0.0f,  0.7f));
-    vegetation.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
-    vegetation.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));
     // cube VAO
     unsigned int cubeVAO, cubeVBO;
     glGenVertexArrays(1, &cubeVAO);
@@ -188,7 +179,6 @@ int main()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glBindVertexArray(0);
     
-    // transparent VAO
     unsigned int transparentVAO, transparentVBO;
     glGenVertexArrays(1, &transparentVAO);
     glGenBuffers(1, &transparentVBO);
@@ -206,19 +196,24 @@ int main()
     unsigned int cubeTexture  = loadTexture("Res/image/marble.jpg");
     unsigned int floorTexture = loadTexture("Res/image/metal.png");
 
-    unsigned int blendTexture = loadTexture("Res/image/blending_transparent_window.png");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    unsigned int grassTexture = loadTexture("Res/image/grass.png");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    unsigned int blendTexture = loadTexture("Res/image/blendingwin.png");
+   
+    
+    vector<glm::vec3> windows
+       {
+           glm::vec3(-1.5f, 0.0f, -0.48f),
+           glm::vec3( 1.5f, 0.0f, 0.51f),
+           glm::vec3( 0.0f, 0.0f, 0.7f),
+           glm::vec3(-0.3f, 0.0f, -2.3f),
+           glm::vec3( 0.5f, 0.0f, -0.6f)
+       };
 
     
     // shader configuration
     // --------------------
     shader.use();
     shader.setInt("texture1", 0);
-
+    
 
     // render loop
     // -----------
@@ -231,58 +226,54 @@ int main()
         // -----
         processInput(window);glfwSetCursorPosCallback(window, mouse_callback);
 
+        std::map<float, glm::vec3> sorted;
+               for (unsigned int i = 0; i < windows.size(); i++)
+               {
+                   float distance = glm::length(camera.Position - windows[i]);
+                   sorted[distance] = windows[i];
+               }
        // render
         // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // don't forget to clear the stencil buffer!
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // set uniforms
-        shaderSingleColor.use();
-        glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        shaderSingleColor.setMat4("view", view);
-        shaderSingleColor.setMat4("projection", projection);
+       // draw objects
+       shader.use();
+       glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+       glm::mat4 view = camera.GetViewMatrix();
+       glm::mat4 model = glm::mat4(1.0f);
+       shader.setMat4("projection", projection);
+       shader.setMat4("view", view);
+       // cubes
+       glBindVertexArray(cubeVAO);
+       glActiveTexture(GL_TEXTURE0);
+       glBindTexture(GL_TEXTURE_2D, cubeTexture);
+       model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+       shader.setMat4("model", model);
+       glDrawArrays(GL_TRIANGLES, 0, 36);
+       model = glm::mat4(1.0f);
+       model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+       shader.setMat4("model", model);
+       glDrawArrays(GL_TRIANGLES, 0, 36);
+       // floor
+       glBindVertexArray(planeVAO);
+       glBindTexture(GL_TEXTURE_2D, floorTexture);
+       model = glm::mat4(1.0f);
+       shader.setMat4("model", model);
+       glDrawArrays(GL_TRIANGLES, 0, 6);
+       // windows (from furthest to nearest)
+       glBindVertexArray(transparentVAO);
+       glBindTexture(GL_TEXTURE_2D, blendTexture);
+        
+       for (std::map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
+       {
+           model = glm::mat4(1.0f);
+           model = glm::translate(model, it->second);
+           shader.setMat4("model", model);
+           glDrawArrays(GL_TRIANGLES, 0, 6);
+       }
 
-        shader.use();
-        shader.setMat4("view", view);
-        shader.setMat4("projection", projection);
 
-
-        // floor
-        glBindVertexArray(planeVAO);
-        glBindTexture(GL_TEXTURE_2D, floorTexture);
-        shader.setMat4("model", glm::mat4(1.0f));
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-        glBindVertexArray(0);
-
-        // 1st. render pass, draw objects as normal, writing to the stencil buffer
-        // --------------------------------------------------------------------
-
-        // cubes
-        glBindVertexArray(cubeVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, cubeTexture);
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        shader.setMat4("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-        shader.setMat4("model", model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-       
-        //grass
-        glBindVertexArray(transparentVAO);
-        glBindTexture(GL_TEXTURE_2D, grassTexture);
-        for(unsigned int i = 0; i < vegetation.size(); i++)
-        {
-            model = glm::mat4(1.0f);
-            model = glm::translate(model, vegetation[i]);
-            shader.setMat4("model", model);
-            glDrawArrays(GL_TRIANGLES, 0, 6);
-        }
-       
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -292,6 +283,10 @@ int main()
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
+    glDeleteVertexArrays(1, &cubeVAO);
+    glDeleteVertexArrays(1, &planeVAO);
+    glDeleteBuffers(1, &cubeVBO);
+    glDeleteBuffers(1, &planeVBO);
     glfwTerminate();
     return 0;
 }
