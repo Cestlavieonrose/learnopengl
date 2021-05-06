@@ -77,7 +77,7 @@ int main()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     Shader shader("ShaderCode/Chapter6/4_framebuffer/framebuffers.vs", "ShaderCode/Chapter6/4_framebuffer/framebuffers.fs");
-    Shader screenShader("ShaderCode/Chapter6/4_framebuffer/framebuffers_screen.vs", "ShaderCode/Chapter6/4_framebuffer/framebuffers_screen_gray.fs");
+    Shader screenShader("ShaderCode/Chapter6/4_framebuffer/framebuffers_screen.vs", "ShaderCode/Chapter6/4_framebuffer/framebuffers_screen_ Convolution_Ruihua.fs");
     
     // configure global opengl state
     // -----------------------------
